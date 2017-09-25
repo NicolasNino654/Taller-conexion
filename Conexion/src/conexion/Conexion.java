@@ -30,8 +30,25 @@ public class Conexion {
                sentencia.execute(Cadena);
                
             } catch (SQLException ex) {
-                System.out.println("no me conecte");
                
+               int keep;
+               keep=ex.getErrorCode();
+               System.out.println(keep);
+               System.out.println(ex);
+               switch(keep){
+                   case 1062:
+                   {
+                       System.out.println("se ha duplicado los valores de la llave primaria");
+                       break;
+                               
+                   }
+               case 1049:
+               System.out.println("base de datos incorrecta");
+               break;
+               default:
+               System.out.println("error desconocido");
+               
+               }
             }
         }
     }
